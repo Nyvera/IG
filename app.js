@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
 const MODEL_URL = 'https://huggingface.co/username/SD-Turbo/resolve/main/model.onnx';
 const CACHE_NAME = 'nyvera-model-cache';
 
-let model;
+let session;
 
 async function loadModel() {
   const cache = await caches.open(CACHE_NAME);
@@ -52,7 +52,8 @@ async function loadModel() {
     progressContainer.style.display = 'none';
   }
 
-  model = await WebSD.loadModel(modelData);
+  // Load ONNX model
+  session = await ort.InferenceSession.create(modelData);
   console.log('Model ready');
 }
 
@@ -72,7 +73,7 @@ function addMessage(text, sender) {
 
 generateBtn.addEventListener('click', async () => {
   const prompt = promptInput.value.trim();
-  if(!prompt || !model) return;
+  if(!prompt || !session) return;
 
   addMessage(prompt, 'user');
   promptInput.value = '';
@@ -80,11 +81,19 @@ generateBtn.addEventListener('click', async () => {
   addMessage('Generating image...', 'ai');
 
   try {
-    const imgData = await model.generate(prompt); // WebSD / ONNX API
+    // Example: you need to implement prompt -> input tensor conversion
+    // and session.run() call according to your ONNX model's input/output spec
+    const inputTensor = new ort.Tensor('float32', new Float32Array([0]), [1]); // placeholder
+    const feeds = { input: inputTensor };
+    const results = await session.run(feeds);
+
+    // Example: render placeholder image
     const canvas = document.createElement('canvas');
-    canvas.width = imgData.width;
-    canvas.height = imgData.height;
-    canvas.getContext('2d').putImageData(imgData, 0, 0);
+    canvas.width = 256;
+    canvas.height = 256;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffdd00';
+    ctx.fillRect(0, 0, 256, 256);
 
     const imgEl = document.createElement('img');
     imgEl.src = canvas.toDataURL();
