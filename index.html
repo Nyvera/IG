@@ -1,28 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Nyvera — Offline WebGPU SD</title>
-  <link rel="manifest" href="/manifest.json"/>
-  <link rel="stylesheet" href="/style.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nyvera AI Image Generator</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <main class="container">
-    <h1>Nyvera — Offline WebGPU Image Generator</h1>
-    <div id="controls">
-      <input id="prompt" placeholder="A fantasy landscape, dramatic lighting" />
-      <button id="generate">Generate</button>
-    </div>
+<header>
+  <h1>Nyvera AI Image Generator</h1>
+</header>
 
-    <div id="status"></div>
-    <canvas id="canvas" width="768" height="768"></canvas>
-    <footer>Uses WebGPU + ONNX Runtime Web. First run downloads ~200–2000MB depending on model.</footer>
-  </main>
+<main>
+  <div id="download-container" style="display: none; text-align:center; margin-bottom:1rem;">
+    <p>Downloading model: <span id="download-percent">0%</span></p>
+    <progress id="download-progress" value="0" max="100" style="width: 80%;"></progress>
+  </div>
 
-  <!-- We vendor the WebSD helper from mlc-ai; see README steps on how to populate /vendor -->
-  <script src="/vendor/web-stable-diffusion/websd.min.js"></script>
-  <script src="/app.js" defer></script>
+  <div id="chat">
+    <div id="messages"></div>
+    <input type="text" id="prompt" placeholder="Enter your prompt...">
+    <button id="generate">Generate</button>
+  </div>
+</main>
+
+<script src="websd.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
