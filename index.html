@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nyvera IG</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Tailwind for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- ONNX Runtime Web -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+
+  <!-- Register service worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen">
+  <h1 class="text-3xl font-bold mb-6">Nyvera - Offline AI Image Generator</h1>
+
+  <div class="flex gap-2 mb-4">
+    <input id="prompt" type="text" placeholder="Enter your prompt..."
+      class="text-black px-4 py-2 rounded w-96">
+    <button id="generate" class="bg-blue-600 px-4 py-2 rounded">Generate</button>
+  </div>
+
+  <canvas id="output" width="512" height="512" class="mt-6 border border-gray-700 rounded"></canvas>
+
+  <p id="status" class="mt-4 text-gray-400"></p>
+
+  <script src="app.js"></script>
+</body>
+</html>
