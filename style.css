@@ -1,3 +1,61 @@
 body {
-  font-family: system-ui, sans-serif;
+  font-family: sans-serif;
+  background: #1e1e2f;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 1rem;
+  background: #2d2d44;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+#chat {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+#messages {
+  border: 1px solid #444;
+  background: #2a2a3e;
+  padding: 1rem;
+  min-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.message {
+  margin-bottom: 1rem;
+}
+
+.message.user {
+  text-align: right;
+  color: #00ffea;
+}
+
+.message.ai {
+  text-align: left;
+  color: #ffdd00;
+}
+
+#prompt {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+#generate {
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+}
+
+progress {
+  height: 20px;
+  border-radius: 5px;
 }
