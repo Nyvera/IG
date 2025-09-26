@@ -3,7 +3,6 @@ const urlsToCache = [
   '/',
   '/index.html',
   '/app.js',
-  '/websd.min.js',
   '/style.css'
 ];
 
