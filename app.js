@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator) {
     .then(() => console.log('Service Worker Registered'));
 }
 
-const MODEL_URL = 'https://huggingface.co/username/SD-Turbo/resolve/main/model.onnx';
+const MODEL_URL = 'https://huggingface.co/onnxruntime/sd-turbo/resolve/main/text_encoder/model.onnx';
 const CACHE_NAME = 'nyvera-model-cache';
 
 let session;
